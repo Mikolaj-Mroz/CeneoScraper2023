@@ -8,4 +8,4 @@ url = f"https://www.ceneo.pl/{product_code}#tab=reviews"
 
 response = requests.get(url)
 
-print(response)
+print(response.status_code)
