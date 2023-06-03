@@ -64,7 +64,6 @@ while url:
         except TypeError:
             url = None
 
-print(json.dumps(opinions_all, indent=4, ensure_ascii=False))
 
 if not os.path.exists('./opinions'):
     os.mkdir('./opinions')

@@ -21,7 +21,31 @@ print(f"""
          Dla {pros_count} opinii autor podana została lista zalet, a dla {cons_count} lista wad.
          Średnia ocen produktu wynosi {average_score:.2f}""")
 
+
+# create a bar chart with stars
 stars = opinions.score.value_counts(dropna=True).reindex(list(np.arange(0, 5.5, 0.5)))
+
+
+# create a pie chart with recommendations
+
+recommendation = opinions.recommendation.value_counts(dropna = False)
+
+figure, axis = plt.subplots(ncols=2)
+
+figure.suptitle("Podsumowanie opinii")
+
+axis[0].set_title("Oceny")
+axis[0].bar(stars.index.astype(str), stars.values)
+
+axis[1].set_title("Opinie")
+axis[1].pie(recommendation.values, labels = recommendation.index, autopct = "%1.1f%%")
+
+
+if not os.path.exists('./plots'):
+    os.mkdir('./plots')
+
+plt.savefig(f"./plots/{product_code}.png")
+
 plt.show()
 
 
